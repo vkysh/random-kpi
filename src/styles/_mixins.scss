@@ -1,0 +1,24 @@
+@mixin onTablet {
+  @media screen and (min-width: map-get($breakpoints, "tablet")) {
+    @content;
+  }
+}
+
+@mixin onDesktop {
+  @media screen and (min-width: map-get($breakpoints, "desktop")) {
+    @content;
+  }
+}
+
+@mixin screenSize($min: null, $max: null) {
+  $min-val: if(map-has-key($breakpoints, $min), map-get($breakpoints, $min), $min);
+  $max-val: if(map-has-key($breakpoints, $max), map-get($breakpoints, $max), $max);
+
+  @if $min-val and $max-val {
+    @media screen and (min-width: $min-val) and (max-width: $max-val) { @content; }
+  } @else if $min-val {
+    @media screen and (min-width: $min-val) { @content; }
+  } @else if $max-val {
+    @media screen and (max-width: $max-val) { @content; }
+  }
+}

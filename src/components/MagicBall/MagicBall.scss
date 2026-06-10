@@ -1,0 +1,203 @@
+.magic-ball {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40px;
+
+  @include onTablet {
+    padding-top: 60px;
+
+    &__digital-orb {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  &__digital-orb {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .ring-1 { 
+      width: 220px; 
+      height: 220px; 
+      border-color: rgba($neon-cyan, 0.3); 
+      border-width: 1px; // 👉 Тоненьке у спокої
+      animation: rotateRing 12s linear infinite;
+    }
+    .ring-2 { 
+      width: 255px; 
+      height: 255px; 
+      border-color: rgba($kpi-green, 0.2); 
+      border-style: dashed;
+      border-width: 1px;
+      animation: rotateRingRev 16s linear infinite;
+    }
+    .ring-3 { 
+      width: 285px; 
+      height: 285px; 
+      border-color: rgba($neon-cyan, 0.15); 
+      border-width: 1px;
+      animation: rotateRing 22s linear infinite;
+    }
+
+    &:hover:not(.spinning) {
+      .magic-ball__orb-ring {
+        border-width: 3px;
+        box-shadow: 0 0 10px rgba($neon-cyan, 0.3);
+      }
+
+      .ring-1 { animation-duration: 4s; }
+      .ring-2 { animation-duration: 5s; }
+      .ring-3 { animation-duration: 7s; }
+    }
+
+    &.spinning {
+      .magic-ball__orb-core { 
+        animation: coreHyperPulse 0.4s infinite ease-in-out alternate;
+      }
+
+      .ring-1 { animation: rotateRing 0.8s linear infinite; border-color: $neon-cyan; }
+      .ring-2 { animation: rotateRingRev 1.2s linear infinite; border-color: $kpi-green; }
+      .ring-3 { animation: rotateRing 0.5s linear infinite; border-color: $neon-cyan; }
+    }
+  }
+
+  &__orb-ring {
+    position: absolute;
+
+    border-width: 1px; 
+    border-style: dashed;
+    border-color: rgba($kpi-green, 0.3);
+    border-radius: 50%;
+    transition: all 0.5s ease;
+  }
+
+  &__orb-core {
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba($panel-dark, 1) 0%, rgba($bg-dark, 0.9) 100%);
+    border: 2px solid rgba($neon-cyan, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 5;
+    
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    animation: coreBreath 3s infinite ease-in-out;
+
+    &:hover {
+      transform: scale(1.05); 
+      border-color: $neon-cyan;
+      box-shadow: 0 0 45px rgba($neon-cyan, 0.6), 0 0 20px rgba($neon-cyan, 0.3) inset;
+      
+      .magic-ball__core-title {
+        text-shadow: 0 0 15px $neon-cyan; 
+      }
+    }
+
+    .magic-ball__digital-orb.spinning & {
+      pointer-events: none; 
+      cursor: not-allowed;
+      animation: coreHyperPulse 0.8s infinite ease-in-out alternate; 
+    }
+  }
+
+  &__core-title {
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+    color: #fff;
+    text-shadow: 0 0 10px rgba($neon-cyan, 0.5);
+  }
+
+  &__loading-text {
+    font-size: 0.9rem;
+    color: $neon-cyan;
+    padding: 10px;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba($neon-cyan, 0.6);
+  }
+
+  &__action-button {
+    background: linear-gradient(135deg, $neon-cyan 0%, $kpi-green 50%, $neon-cyan 100%);
+    background-size: 200% auto;
+    border: none;
+    color: $bg-dark;
+    font-weight: 800;
+    padding: 16px 36px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba($kpi-green, 0.4);
+    animation: cyberPulse 3s infinite ease-in-out;
+    transition: all 0.2s ease;
+
+    &:hover:not(:disabled) {
+      transform: scale(1.08);
+      box-shadow: 0 0 40px rgba($neon-cyan, 0.8), 0 0 15px rgba($kpi-green, 0.6);
+      background-position: right center;
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.92);
+      box-shadow: 0 0 10px rgba($kpi-green, 0.8) inset, 0 0 10px rgba($neon-cyan, 0.4);
+      transition: all 0.1s;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      animation: none;
+      color: rgba(255, 255, 255, 0.7);
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba($kpi-green, 0.2),
+        rgba($kpi-green, 0.2) 15px,
+        rgba($neon-cyan, 0.4) 15px,
+        rgba($neon-cyan, 0.4) 30px
+      );
+      background-size: 42px 42px;
+      animation: loadingStripes 1s linear infinite;
+      box-shadow: 0 0 10px rgba($kpi-green, 0.2);
+    }
+  }
+}
+
+@keyframes rotateRing { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes rotateRingRev { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+
+@keyframes coreBreath {
+  0%, 100% {  
+    box-shadow: 0 0 25px rgba($neon-cyan, 0.2); 
+    border-color: rgba($neon-cyan, 0.4); 
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba($neon-cyan, 0.4); 
+    border-color: rgba($neon-cyan, 0.7); 
+  }
+}
+
+@keyframes coreHyperPulse {
+  0% { transform: scale(1); border-color: $neon-cyan; box-shadow: 0 0 30px rgba($neon-cyan, 0.6); }
+  100% { transform: scale(1.06); border-color: $kpi-green; box-shadow: 0 0 55px rgba($kpi-green, 0.8); }
+}
+
+@keyframes cyberPulse {
+  0%, 100% { box-shadow: 0 0 15px rgba($kpi-green, 0.4); }
+  50% { box-shadow: 0 0 35px rgba($neon-cyan, 0.6), 0 0 10px rgba($neon-cyan, 0.4) inset; }
+}
+
+@keyframes loadingStripes {
+  0% { background-position: 0 0; }
+  100% { background-position: 42px 0; }
+}

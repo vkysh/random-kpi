@@ -1,0 +1,51 @@
+.result {
+  margin-bottom: 20px;
+
+  background: rgba($panel-dark, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  &__badge {
+    display: inline-block;
+    background: rgba($kpi-green, 0.1);
+    border: 1px solid $kpi-green;
+    color: $kpi-green;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-shadow: 0 0 8px rgba($kpi-green, 0.4);
+  }
+
+  &__description {
+    margin: 5px 0;
+    color: $text-light;
+    line-height: 1.5;
+    font-size: 16px;
+  }
+
+  &__meta-info {
+    margin-top: 12px;
+    font-size: 16px;
+    color: $text-light;
+    line-height: 1.5;
+  }
+
+  &__details-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: $neon-cyan;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba($neon-cyan, 0.6);
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: $kpi-green;
+      text-shadow: 0 0 12px rgba($kpi-green, 0.8);
+    }
+  }
+}
