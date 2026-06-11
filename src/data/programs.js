@@ -1,22 +1,43 @@
-import { LuLaptop, LuWifi, LuRadio, LuBot, LuActivity, LuPalette } from "react-icons/lu";
-import { FaPlugCircleBolt, FaScrewdriverWrench, FaPlaneUp, FaPencil, FaBrain, FaEarthAmericas } from "react-icons/fa6";
+import { LuLaptop, LuActivity, LuPalette } from "react-icons/lu";
+import { FaScrewdriverWrench, FaBrain, FaEarthAmericas } from "react-icons/fa6";
 import { HiScale, HiOutlineUsers } from "react-icons/hi2";
 
 export const fieldsList = [
-  { id: "it", label: "IT та програмування", icon: LuLaptop },
-  { id: "telecom", label: "Телекомунікації та мережі", icon: LuWifi },
-  { id: "electronics", label: "Електроніка та радіотехніка", icon: LuRadio },
-  { id: "robotics", label: "Автоматизація та робототехніка", icon: LuBot },
-  { id: "energy", label: "Енергетика", icon: FaPlugCircleBolt },
-  { id: "bio", label: "Біотехнології/медицина", icon: LuActivity },
-  { id: "business", label: "Бізнес та менеджмент", icon: HiOutlineUsers },
-  { id: "security", label: "Безпека інформації", icon: HiScale },
-  { id: "design", label: "Дизайн та медіа", icon: LuPalette },
-  { id: "mechanics", label: "Інженерія та механіка", icon: FaScrewdriverWrench },
-  { id: "aerospace", label: "Авіація та космос", icon: FaPlaneUp },
-  { id: "chemistry", label: "Хімія та екологія", icon: FaEarthAmericas },
-  { id: "humanities", label: "Право, соціологія та мови", icon: FaBrain },
-  { id: "science", label: "Математика та фізика", icon: FaPencil }
+  { 
+    code: "B", 
+    label: "Культура, мистецтво та гуманітарні науки", 
+    icon: LuPalette 
+  },
+  { 
+    code: "C", 
+    label: "Соціальні науки, журналістика та інформація", 
+    icon: HiOutlineUsers 
+  },
+  { 
+    code: "D", 
+    label: "Бізнес, адміністрування та право", 
+    icon: HiScale 
+  },
+  { 
+    code: "E", 
+    label: "Природничі науки, математика та статистика", 
+    icon: FaEarthAmericas 
+  },
+  { 
+    code: "F", 
+    label: "Інформаційні технології", 
+    icon: LuLaptop 
+  },
+  { 
+    code: "G", 
+    label: "Інженерія, виробництво та будівництво", 
+    icon: FaScrewdriverWrench 
+  },
+  { 
+    code: "I", 
+    label: "Охорона здоров’я та соціальне забезпечення", 
+    icon: LuActivity 
+  }
 ];
 
 export const groupedSoftTags = [
