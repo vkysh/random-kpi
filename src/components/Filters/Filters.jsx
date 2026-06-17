@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { fieldsList, groupedSoftTags } from '../../data/programs';
+import CustomSelect from '../CustomSelect/CustomSelect';
 import './Filters.scss';
 
 const Filters = ({
@@ -38,7 +39,28 @@ const Filters = ({
   return (
     <div className={`filters ${disabled ? 'disabled' : ''}`}>
       <h3>1. Налаштуй фільтри</h3>
-      
+      <div className="filters__select-group">
+        <div className="filters__input-box">
+          <label>Рівень:</label>
+          <CustomSelect 
+            value={degree}
+            options={['Бакалавр', 'Магістр']}
+            onChange={(val) => setDegree(val)}
+            disabled={disabled}
+          />
+        </div>
+
+        <div className="filters__input-box">
+          <label>Форма:</label>
+          <CustomSelect 
+            value={form}
+            options={['Будь-яка', 'Очна', 'Заочна', 'Дистанційна', 'Прискорена']}
+            onChange={(val) => setForm(val)}
+            disabled={disabled}
+          />
+        </div>
+      </div>
+
       <div className="filters__group">
         <label>Галузь знань:</label>
         <div className="filters__fields-list">
@@ -56,37 +78,6 @@ const Filters = ({
               </span>
             </button>
           ))}
-        </div>
-      </div>
-
-      <div className="filters__select-group">
-        <div className="filters__input-box">
-          <label>Рівень:</label>
-          <select 
-            className="filters__select"
-            value={degree} 
-            onChange={(e) => setDegree(e.target.value)}
-            disabled={disabled}
-          >
-            <option value="Бакалавр">Бакалавр</option>
-            <option value="Магістр">Магістр</option>
-          </select>
-        </div>
-
-        <div className="filters__input-box">
-          <label>Форма:</label>
-          <select 
-            className="filters__select"
-            value={form} 
-            onChange={(e) => setForm(e.target.value)}
-            disabled={disabled}
-          >
-            <option value="Будь-яка">Будь-яка</option>
-            <option value="Очна">Очна</option>
-            <option value="Заочна">Заочна</option>
-            <option value="Дистанційна">Дистанційна</option>
-            <option value="Прискорена">Прискорена</option>
-          </select>
         </div>
       </div>
 

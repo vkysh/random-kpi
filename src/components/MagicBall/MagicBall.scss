@@ -173,6 +173,12 @@
   }
 }
 
+.is-paused {
+  &, *, &::before, &::after {
+    animation-play-state: paused !important;
+  }
+}
+
 @keyframes rotateRing { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 @keyframes rotateRingRev { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
 

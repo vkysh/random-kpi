@@ -33,7 +33,7 @@ function App() {
     });
 
     let finalPrograms = scoredPrograms.filter(prog => {
-      return selectedFields.length === 0 || prog.fields.some(f => selectedFields.includes(f));
+      return selectedFields.length === 0 || selectedFields.includes(prog.code);
     });
 
     finalPrograms.sort((a, b) => b.matchCount - a.matchCount);
@@ -71,7 +71,7 @@ function App() {
           passScore: Number(prog.pass_score || 0),
           forms: prog.forms ? prog.forms.split(',').map(s => s.trim().toLowerCase()) : [],
           degree: prog.degree ? prog.degree.split(',').map(s => s.trim().toLowerCase()) : [],
-          fields: prog.fields ? prog.fields.split(',').map(s => s.trim()) : [],
+          code: prog.code ? prog.code.trim().toUpperCase() : '',
           tags: prog.tags ? prog.tags.split(',').map(s => s.trim()) : [],
           coefficients: {
             ukr: Number(prog.k_ukr || 0),

@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './MagicBall.scss';
+import usePerformanceOptimizer from '../hooks/usePerformanceOptimizer';
 
 const phrases = [
   "Аналізуємо твоє майбутнє...",
@@ -9,6 +10,8 @@ const phrases = [
 
 const MagicBall = ({ animState, onSpin }) => {
   const [loadingText, setLoadingText] = useState(phrases[0]);
+  const ballRef = useRef(null);
+  const isPaused = usePerformanceOptimizer(ballRef);
 
   useEffect(() => {
     let interval;
@@ -23,7 +26,10 @@ const MagicBall = ({ animState, onSpin }) => {
   }, [animState]);
 
   return (
-    <div className="magic-ball">
+    <div 
+      ref={ballRef} 
+      className={`magic-ball ${isPaused ? 'is-paused' : ''}`}
+    >
       <div className={`magic-ball__digital-orb ${animState}`}>
         <div 
           className="magic-ball__orb-core"
