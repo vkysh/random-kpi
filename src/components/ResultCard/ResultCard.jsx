@@ -1,8 +1,10 @@
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import CustomSelect from '../CustomSelect/CustomSelect';
 import './ResultCard.scss';
 
 const ResultCard = ({ program }) => {
+  console.log("Перевірка URL:", program.url);
+
   const [scores, setScores] = useState({
     ukr: 150,
     math: 150,
@@ -24,7 +26,7 @@ const ResultCard = ({ program }) => {
           behavior: 'smooth', 
           block: 'start' 
         });
-      }, 150);
+      }, 300);
     }
   }, [program]);
 
@@ -87,9 +89,9 @@ const ResultCard = ({ program }) => {
   }
 
   return (
-    <div className="" ref={cardRef}>
+    <div className="result-card-wrapper" ref={cardRef}>
       <div className="result animate-fade-in">
-        <span className="result__badge">{(program.code_n.length > 2 ? ` ${program.code_n}` : program.code + program.code_n)} {program.speciality}</span>
+        <span className="result__badge">{(program.code_n.length > 5 ? ` ${program.code_n}` : program.code + program.code_n)} {program.speciality}</span>
         <div className="result__meta-info">
           <span><strong>Інститут:</strong> {program.institute}</span><br />
           <span><strong>Форма:</strong> {program.forms.join(', ')}</span>

@@ -5,7 +5,6 @@
 }
 
 body {
-  // Радіальний градієнт: точка світла зверху по центру (#0d2240), що переходить у глибокий темний (#040914)
   background: radial-gradient(circle at 50% 0%, #0d2240 0%, #040914 80%, #010308 100%);
   background-attachment: fixed; 
   
@@ -19,7 +18,7 @@ body {
   margin: 0 auto;
   padding: 40px 20px;
   min-height: 100dvh; 
-  overflow-x: hidden; 
+
   display: flex;
   flex-direction: column;
 }
@@ -27,13 +26,13 @@ body {
 .app-header {
   text-align: center;
   margin-bottom: 40px;
-  
+
   h1 {
     font-size: 2.5rem;
     color: #fff;
     text-shadow: 0 0 10px rgba($kpi-green, 0.3);
   }
-  
+
   p {
     color: $text-muted;
     margin-top: 10px;
@@ -42,34 +41,38 @@ body {
 
 .app-content {
   display: grid;
-  // Десктоп: 3 колонки (Ліва, Центр, Права)
-  grid-template-columns: 320px 1fr 380px;
+  grid-template-columns: 320px 1fr 320px;
   gap: 30px;
-  
   align-items: start;
 
-  // Планшети та мобільні телефони
+  .column-center {
+    position: sticky;
+    top: 40px;
+    z-index: 10;
+  }
+
   @media (max-width: 1044px) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    // Вказуємо чіткий порядок блоків
+
     .column-center {
-      order: 1; // Куля йде найпершою
+      order: 1;
+      position: static; 
     }
-    
+
     .column-left {
-      order: 2; // Фільтри йдуть другими
+      order: 2;
+      width: 100%;
     }
-    
+
     .column-right {
-      order: 3; // Картка з результатом йде останньою
+      order: 3;
+      width: 100%;
     }
   }
 }
 
-// Банер НН ІТС (якщо він у тебе не перенесений в ResultCard.scss, нехай лежить тут)
 .its-recruitment-banner {
   background: rgba(#0d1117, 0.98); 
   border: 1px solid rgba(255, 255, 255, 0.1);

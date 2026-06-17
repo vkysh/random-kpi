@@ -1,19 +1,12 @@
 .filters {
-  background: rgba(13, 17, 23, 0.98); 
+  background: rgba($panel-dark, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-  position: relative;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   max-width: 600px;
-
-  // 2. СТИЛІ ДЛЯ ПК ТА ПЛАНШЕТІВ: Красиве скло
-  @include onTablet {
-    background: rgba($panel-dark, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  }
+  margin-inline: auto;
 
   &.disabled {
     opacity: 0.5;
@@ -216,6 +209,14 @@
       color: #fff;
       box-shadow: 0 0 8px rgba($neon-cyan, 0.3);
     }
+  }
+
+  .custom-select__header {
+    max-width: 220px;
+  }
+
+  .custom-select__list {
+    max-width: 200px;
   }
 }
 

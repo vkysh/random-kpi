@@ -21,7 +21,7 @@ function App() {
   const getFilteredPrograms = (data) => {
     const strictFiltered = data.filter(prog => {
       const matchDegree = prog.degree.includes(degree.toLowerCase());
-      const matchForm = form === 'будь-яка' || prog.forms.includes(form.toLowerCase());
+      const matchForm = form.toLowerCase() === 'будь-яка' || prog.forms.includes(form.toLowerCase());
       return matchDegree && matchForm;
     });
 
@@ -45,6 +45,10 @@ function App() {
 
       const needed = 5 - finalPrograms.length;
       finalPrograms = [...finalPrograms, ...leftovers.slice(0, needed)];
+    }
+
+    if (finalPrograms.length === 0) {
+      alert("На жаль, за цими критеріями не знайдено жодної програми :(. Змініть фільтри і спробуйте ще раз!");
     }
 
     return finalPrograms;
@@ -73,6 +77,7 @@ function App() {
           degree: prog.degree ? prog.degree.split(',').map(s => s.trim().toLowerCase()) : [],
           code: prog.code ? prog.code.trim().toUpperCase() : '',
           tags: prog.tags ? prog.tags.split(',').map(s => s.trim()) : [],
+          url: prog.url ? prog.url.trim() : '',
           coefficients: {
             ukr: Number(prog.k_ukr || 0),
             math: Number(prog.k_math || 0),
