@@ -27,10 +27,26 @@ body {
   text-align: center;
   margin-bottom: 40px;
 
+  &__logo {
+    width: 80px; // Оптимальний розмір для десктопу
+    height: auto;
+    margin-bottom: 24px;
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.15)); // Легке світіння
+    
+    @media (max-width: 600px) {
+      width: 65px; // Трохи менший на телефонах
+      margin-bottom: 16px;
+    }
+  }
+
   h1 {
     font-size: 2.5rem;
     color: #fff;
     text-shadow: 0 0 10px rgba($kpi-green, 0.3);
+
+    @media (max-width: 600px) {
+      font-size: 1.8rem;
+    }
   }
 
   p {
@@ -73,34 +89,3 @@ body {
   }
 }
 
-.its-recruitment-banner {
-  background: rgba(#0d1117, 0.98); 
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-  margin-top: 20px;
-  border-color: rgba($kpi-green, 0.3);
-  background: linear-gradient(180deg, rgba($panel-dark, 0.8) 0%, rgba($kpi-green, 0.05) 100%);
-  
-  h4 { 
-    color: $kpi-green; 
-    margin-bottom: 8px; 
-  }
-  
-  .slogan { 
-    font-style: italic; 
-    font-size: 0.85rem; 
-    color: $text-muted; 
-    margin-bottom: 10px; 
-  }
-  
-  ul { 
-    padding-left: 20px; 
-    font-size: 0.9rem; 
-    
-    li { 
-      margin-bottom: 4px; 
-    } 
-  }
-}

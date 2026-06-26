@@ -9,6 +9,7 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   max-width: 600px;
   margin-inline: auto;
+  scroll-margin-top: 50px;
 
   &__badge {
     display: inline-block;
@@ -156,6 +157,33 @@
     }
   }
 
+  &__share-btn {
+    margin-top: 16px;
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
   &__options {
     margin-bottom: 24px;
     padding-top: 16px;
@@ -289,4 +317,91 @@
 
 .result-card-wrapper {
   scroll-margin-top: 30px; 
+}
+
+.its-promo {
+  background: linear-gradient(180deg, rgba($panel-dark, 0.8) 0%, rgba(0, 82, 165, 0.1) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.3); // Використовуємо новий блакитний КПІ
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  margin-top: 24px;
+  max-width: 600px;
+  margin-inline: auto;
+
+  &__title {
+    color: #38bdf8;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+  }
+
+  &__slogan {
+    font-style: italic;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 16px;
+  }
+
+  &__card {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+    opacity: 1;
+    transform: translateY(0);
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    &--fading {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+  }
+
+  &__program-title {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+
+  &__program-desc {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+  }
+
+  &__link {
+    color: #38bdf8;
+    font-size: 0.85rem;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+  }
+
+  &__btn {
+    width: 100%;
+    padding: 10px;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid #38bdf8;
+    border-radius: 8px;
+    color: #38bdf8;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba(56, 189, 248, 0.2);
+      color: #fff;
+    }
+  }
 }

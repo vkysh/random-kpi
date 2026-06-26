@@ -6,8 +6,12 @@
   justify-content: center;
   padding-top: 40px;
 
+  @include screenSize(0, "tablet") {
+    padding-top: 0;
+  }
+
   @include onTablet {
-    padding-top: 60px;
+    padding-top: 30px;
 
     &__digital-orb {
       width: 200px;

@@ -4,6 +4,7 @@ import Filters from './components/Filters/Filters.jsx';
 import MagicBall from './components/MagicBall/MagicBall.jsx';
 import ResultCard from './components/ResultCard/ResultCard.jsx';
 import './styles/Main.scss';
+import gerb from './assets/gerb.webp';
 
 const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRX8L7lErG70WU5sHv8efGWXVth7AjXLB44SUV0nJZ6KqQBN_O9hxtWm7ydwFaSlb0uEi_abnJ0t_y9/pub?gid=0&single=true&output=csv";
 
@@ -14,7 +15,7 @@ function App() {
   const [degree, setDegree] = useState('бакалавр');
   const [form, setForm] = useState('будь-яка');
   const [selectedTags, setSelectedTags] = useState([]); 
-
+  
   const [currentProgram, setCurrentProgram] = useState(null);
   const [animState, setAnimState] = useState('idle');
 
@@ -118,7 +119,8 @@ function App() {
   return (
     <div className="app-container">
       <header className="app-header">
-        <h1>Рандомайзер освітніх програм КПІ</h1>
+        <img src={gerb} alt="Герб КПІ" className="app-header__logo" />
+        <h1>Рандомайзер освітніх програм КПІ ім. Ігоря Сікорського</h1>
         <p>Не знаєш, яку освітню програму обрати? Покладися на теорію випадкових процесів!</p>
       </header>
 

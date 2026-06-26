@@ -3,8 +3,6 @@ import CustomSelect from '../CustomSelect/CustomSelect';
 import './ResultCard.scss';
 
 const ResultCard = ({ program }) => {
-  console.log("Перевірка URL:", program.url);
-
   const [scores, setScores] = useState({
     ukr: 150,
     math: 150,
@@ -18,6 +16,7 @@ const ResultCard = ({ program }) => {
   const [isCalculated, setIsCalculated] = useState(false);
 
   const cardRef = useRef(null);
+  const calcResultRef = useRef(null);
 
   useEffect(() => {
     if (window.innerWidth <= 1044 && cardRef.current) {
@@ -30,6 +29,17 @@ const ResultCard = ({ program }) => {
     }
   }, [program]);
 
+  useEffect(() => {
+    if (isCalculated && calcResultRef.current) {
+      setTimeout(() => {
+        calcResultRef.current.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }, 150); 
+    }
+  }, [isCalculated]);
+
   const electiveMap = {
     'Біологія': 'bio',
     'Фізика': 'phys',
@@ -37,6 +47,34 @@ const ResultCard = ({ program }) => {
     'Українська література': 'ukrlit',
     'Географія': 'geo',
     'Англійська мова': 'language'
+  };
+
+  const itsPrograms = [
+    { id: 1, title: "Інформаційно-комунікаційні технології", desc: "Архітектура мереж, хмарні рішення та ПЗ", url: "https://vstup.its.kpi.ua/" },
+    { id: 2, title: "Інженерія та програмування інфокомунікацій", desc: "Програмування, кібербезпека та мережні технології", url: "https://vstup.its.kpi.ua/" },
+    { id: 3, title: "Системи електронних комунікацій та IoT", desc: "Розробка інфраструктури для розумних пристроїв IoT", url: "https://vstup.its.kpi.ua/" },
+    { id: 4, title: "Системи штучного інтелекту в електронних комунікаціях", desc: "Машинне навчання та аналітика Big Data", url: "https://vstup.its.kpi.ua/" },
+    { id: 5, title: "Інженерія систем телекомунікацій і керування БПАК", desc: "Системи зв'язку та апаратне управління БПЛА", url: "https://vstup.its.kpi.ua/" }
+  ];
+
+  const [randomItsProgram, setRandomItsProgram] = useState(itsPrograms[0]);
+  const [isItsFading, setIsItsFading] = useState(false);
+
+  const handleRandomizeIts = () => {
+    if (isItsFading) return; 
+
+    setIsItsFading(true);
+
+    setTimeout(() => {
+      let randomIndex = Math.floor(Math.random() * itsPrograms.length);
+      
+      while (itsPrograms[randomIndex].id === randomItsProgram.id) {
+        randomIndex = Math.floor(Math.random() * itsPrograms.length);
+      }
+      
+      setRandomItsProgram(itsPrograms[randomIndex]);
+      setIsItsFading(false);
+    }, 300);
   };
 
   const calculateScore = () => {
@@ -88,6 +126,26 @@ const ResultCard = ({ program }) => {
     return <div className="result-card error">{program.message}</div>;
   }
 
+  const handleShare = async () => {
+    // Спокійний, природний текст
+    const shareText = `Довірив свою долю рандомайзеру КПІ і тепер я йду на "${program.speciality}" 💻. Калькулятор каже, що ${chance.text.toLowerCase()}. А куди закине тебе?`;
+    const shareUrl = window.location.origin;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          text: shareText,
+          url: shareUrl,
+        });
+      } catch (error) {
+        console.log('Шеринг скасовано', error);
+      }
+    } else {
+      navigator.clipboard.writeText(`${shareText}\n${shareUrl}`);
+      alert('✅ Текст скопійовано! Можеш відправляти друзям.');
+    }
+  };
+
   return (
     <div className="result-card-wrapper" ref={cardRef}>
       <div className="result animate-fade-in">
@@ -116,7 +174,10 @@ const ResultCard = ({ program }) => {
               className="nmt-calculator__input"
               type="number" min="100" max="200" 
               value={scores.ukr} 
-              onChange={(e) => {setScores({...scores, ukr: Number(e.target.value)}); setIsCalculated(false)}} 
+              onChange={(e) => {
+                setScores({...scores, ukr: e.target.value === '' ? '' : Number(e.target.value)}); 
+                setIsCalculated(false);
+              }} 
             />
           </div>
           
@@ -126,7 +187,10 @@ const ResultCard = ({ program }) => {
               className="nmt-calculator__input"
               type="number" min="100" max="200" 
               value={scores.math} 
-              onChange={(e) => {setScores({...scores, math: Number(e.target.value)}); setIsCalculated(false)}} 
+              onChange={(e) => {
+                setScores({...scores, math: e.target.value === '' ? '' : Number(e.target.value)}); 
+                setIsCalculated(false);
+              }} 
             />
           </div>
           
@@ -136,7 +200,10 @@ const ResultCard = ({ program }) => {
               className="nmt-calculator__input"
               type="number" min="100" max="200" 
               value={scores.hist} 
-              onChange={(e) => {setScores({...scores, hist: Number(e.target.value)}); setIsCalculated(false)}} 
+              onChange={(e) => {
+                setScores({...scores, hist: e.target.value === '' ? '' : Number(e.target.value)}); 
+                setIsCalculated(false);
+              }} 
             />
           </div>
 
@@ -152,7 +219,10 @@ const ResultCard = ({ program }) => {
               className="nmt-calculator__input nmt-calculator__input--mt"
               type="number" min="100" max="200" 
               value={scores.elective} 
-              onChange={(e) => {setScores({...scores, elective: Number(e.target.value)}); setIsCalculated(false)}} 
+              onChange={(e) => {
+                setScores({...scores, elective: e.target.value === '' ? '' : Number(e.target.value)}); 
+                setIsCalculated(false);
+              }} 
             />
           </div>
 
@@ -163,7 +233,10 @@ const ResultCard = ({ program }) => {
                 className="nmt-calculator__input"
                 type="number" min="100" max="200" 
                 value={scores.creative} 
-                onChange={(e) => {setScores({...scores, creative: Number(e.target.value)}); setIsCalculated(false)}} 
+                onChange={(e) => {
+                  setScores({...scores, creative: e.target.value === '' ? '' : Number(e.target.value)}); 
+                  setIsCalculated(false);
+                }} 
               />
             </div>
           )}
@@ -192,7 +265,7 @@ const ResultCard = ({ program }) => {
         </button>
 
         {isCalculated && (
-          <div className="nmt-calculator__result animate-slide-up">
+          <div className="nmt-calculator__result animate-slide-up" ref={calcResultRef}>
             <div className="nmt-calculator__score-main">
               <span className="nmt-calculator__score-label">Твій конкурсний бал:</span>
               <div className="nmt-calculator__score-value">{finalScore}</div>
@@ -207,19 +280,31 @@ const ResultCard = ({ program }) => {
             <div className="nmt-calculator__chance" style={{ borderLeft: `5px solid ${chance.color}` }}>
               {chance.text}
             </div>
+
+            <button className="nmt-calculator__share-btn" onClick={handleShare}>
+              Поділитися результатом
+            </button>
           </div>
         )}
       </div>
 
       {/* М'яка воронка рекрутингу для НН ІТС */}
       {program.institute !== "НН ІТС" && (
-        <div className="its-recruitment-banner">
-          <h4>Також тобі можуть сподобатися програми НН ІТС 👇</h4> [cite: 207]
-          <p className="slogan">"НН ІТС — коли хочеш не просто користуватися технологіями, а створювати зв’язок майбутнього."</p> [cite: 212]
-          <ul>
-            <li>🌐 Інформаційно-комунікаційні системи</li> [cite: 214]
-            <li>📡 Технології електронних комунікацій</li> [cite: 214]
-          </ul>
+        <div className="its-promo">
+          <h4 className="its-promo__title">Також тобі можуть сподобатися програми НН ІТС 👇</h4>
+          <p className="its-promo__slogan">"НН ІТС — коли хочеш не просто користуватися технологіями, а створювати зв’язок майбутнього."</p>
+          
+          <div className={`its-promo__card ${isItsFading ? 'its-promo__card--fading' : ''}`}>
+            <h5 className="its-promo__program-title">{randomItsProgram.title}</h5>
+            <p className="its-promo__program-desc">{randomItsProgram.desc}</p>
+            <a href={randomItsProgram.url} target="_blank" rel="noreferrer" className="its-promo__link">
+              Дізнатися більше на сайті
+            </a>
+          </div>
+
+          <button className="its-promo__btn" onClick={handleRandomizeIts}>
+            Показати іншу спеціальність ІТС
+          </button>
         </div>
       )}
     </div>
