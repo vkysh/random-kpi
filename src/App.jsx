@@ -3,7 +3,7 @@ import Papa from 'papaparse';
 import Filters from './components/Filters/Filters.jsx';
 import MagicBall from './components/MagicBall/MagicBall.jsx';
 import ResultCard from './components/ResultCard/ResultCard.jsx';
-import './styles/\css';
+import './styles/Main.scss';
 import gerb from './assets/gerb.webp';
 
 const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRX8L7lErG70WU5sHv8efGWXVth7AjXLB44SUV0nJZ6KqQBN_O9hxtWm7ydwFaSlb0uEi_abnJ0t_y9/pub?gid=0&single=true&output=csv";
