@@ -127,8 +127,10 @@ const ResultCard = ({ program }) => {
   }
 
   const handleShare = async () => {
-    // Спокійний, природний текст
-    const shareText = `Довірив свою долю рандомайзеру КПІ і тепер я йду на "${program.speciality}" 💻. Калькулятор каже, що ${chance.text.toLowerCase()}. А куди закине тебе?`;
+    const fullCode = program.code_n.length > 5 ? program.code_n.trim() : program.code + program.code_n;
+
+    const shareText = `Крута штука — Рандомайзер освітніх програм КПІ ім. Ігоря Сікорського 🎲\n\nМені випало: ${fullCode} "${program.speciality}" (${program.institute}).\nКалькулятор каже, що ${chance.text.toLowerCase()}.\n\nА що випаде тобі? 👇`;
+    
     const shareUrl = window.location.origin;
 
     if (navigator.share) {
@@ -291,8 +293,8 @@ const ResultCard = ({ program }) => {
       {/* М'яка воронка рекрутингу для НН ІТС */}
       {program.institute !== "НН ІТС" && (
         <div className="its-promo">
-          <h4 className="its-promo__title">Також тобі можуть сподобатися програми НН ІТС 👇</h4>
-          <p className="its-promo__slogan">"НН ІТС — коли хочеш не просто користуватися технологіями, а створювати зв’язок майбутнього."</p>
+          <h4 className="its-promo__title">Також тобі можуть сподобатися програми НН ІТС</h4>
+          <p className="its-promo__slogan">"НН ІТС - коли хочеш не просто користуватися технологіями, а створювати зв’язок майбутнього."</p>
           
           <div className={`its-promo__card ${isItsFading ? 'its-promo__card--fading' : ''}`}>
             <h5 className="its-promo__program-title">{randomItsProgram.title}</h5>
