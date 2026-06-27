@@ -129,7 +129,7 @@ const ResultCard = ({ program }) => {
   const handleShare = async () => {
     const fullCode = program.code_n.length > 5 ? program.code_n.trim() : program.code + program.code_n;
 
-    const shareText = `Крута штука — Рандомайзер освітніх програм КПІ ім. Ігоря Сікорського 🎲\n\nМені випало: ${fullCode} "${program.speciality}" (${program.institute}).\nКалькулятор каже, що ${chance.text.toLowerCase()}.\n\nА що випаде тобі? 👇`;
+    const shareText = `Крута штука - Рандомайзер освітніх програм КПІ ім. Ігоря Сікорського 🎲\n\nМені випало: \n${fullCode} "${program.speciality}" (${program.institute}).\nКалькулятор каже, що ${chance.text.toLowerCase()}.\n\nА що випаде тобі? 👇`;
     
     const shareUrl = window.location.origin;
 
